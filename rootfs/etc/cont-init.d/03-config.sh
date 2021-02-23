@@ -51,7 +51,7 @@ fi
 
 # DokuWiki
 echo "Initializing DokuWiki files / folders..."
-runas_user mkdir -p /data/plugins /data/tpl
+runas_user mkdir -p /data/plugins /data/tpl /data/lib/images
 
 echo "Adding preload.php..."
 cp -f /tpls/preload.php /var/www/inc/
@@ -78,7 +78,7 @@ fi
 
 if [ ! -d /data/lib/images ]; then
   echo "Creating initial images folder..."
-  runas_user cp -Rf /var/www/lib/images /data/lib
+  runas_user cp -Rf /var/www/lib/images /data/lib/images/
 fi
 
 echo "Bootstrapping configuration..."
