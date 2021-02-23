@@ -78,7 +78,7 @@ fi
 
 if [ ! -d /data/lib/images ]; then
   echo "Creating initial images folder..."
-  runas_user cp -Rf /var/www/lib/images /data/
+  runas_user cp -Rf /var/www/lib/images /data/lib
 fi
 
 echo "Bootstrapping configuration..."
