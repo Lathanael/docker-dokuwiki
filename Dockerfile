@@ -2,7 +2,7 @@ ARG DOKUWIKI_VERSION="2020-07-29"
 ARG DOKUWIKI_MD5="8867b6a5d71ecb5203402fe5e8fa18c9"
 
 FROM --platform=${TARGETPLATFORM:-linux/amd64} crazymax/alpine-s6:3.12-2.1.0.2
-LABEL maintainer="CrazyMax"
+LABEL maintainer="Lathanael"
 
 RUN apk --update --no-cache add \
     curl \

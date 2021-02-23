@@ -66,9 +66,19 @@ if [ ! -f /data/conf/local.protected.php ]; then
   sed -i "1s/.*/<?php define('DOKU_CONF', '\/data\/conf\/'); define('DOKU_LOCAL', '\/data\/conf\/');/" /var/www/install.php
 fi
 
+if [ ${firstInstall} -eq 0 ] && [ ! -f /var/www/install.php ]; then
+  echo "Existing install with install.php detected, removing install.php..."
+  rm /var/www/install.php
+fi
+
 if [ ! -d /data/data ]; then
   echo "Creating initial data folder..."
   runas_user cp -Rf /var/www/data /data/
+fi
+
+if [ ! -d /data/lib/images ]; then
+  echo "Creating initial images folder..."
+  runas_user cp -Rf /var/www/lib/images /data/
 fi
 
 echo "Bootstrapping configuration..."
@@ -112,6 +122,9 @@ for userTpl in ${userTpls}; do
   fi
   ln -sf "/data/tpl/${userTpl}" "/var/www/lib/tpl/${userTpl}"
 done
+
+echo "Setting up extended access to dokuwiki files in the data folder..."
+ln -sf /data/lib/images /var/www/lib/images
 
 # First install ?
 if [ ${firstInstall} -eq 1 ]; then
