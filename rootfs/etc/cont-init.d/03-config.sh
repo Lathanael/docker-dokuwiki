@@ -123,8 +123,12 @@ for userTpl in ${userTpls}; do
   ln -sf "/data/tpl/${userTpl}" "/var/www/lib/tpl/${userTpl}"
 done
 
-echo "Setting up extended access to dokuwiki files in the data folder..."
-ln -sf /data/lib/images /var/www/lib/images
+if [ ${firstInstall} -eq 0 ] && [ -f /data/lib/images ]; then
+  echo "Setting up extended access to dokuwiki files in the data folder..."
+  rm -rf /var/www/lib/images/*
+..ln -sf /data/lib/images /var/www/lib/images
+fi
+
 
 # First install ?
 if [ ${firstInstall} -eq 1 ]; then
