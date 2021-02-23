@@ -1,9 +1,0 @@
-/.dev
-/.idea
-/*.iml
-/.github
-/entrypoint.sh
-/pre-deploy.sh
-/.gitignore
-/.docker-bake.hcl
-/examples
