@@ -127,7 +127,7 @@ if [ ${firstInstall} -eq 0 ] && [ -d /data/lib/images ]; then
   echo "Setting up extended access to dokuwiki image files..."
   runas_user cp -Ru /var/www/lib/images /data/lib/
   rm -rf /var/www/lib/images/*
-..ln -sf /data/lib/images /var/www/lib/images
+  ln -sf /data/lib/images /var/www/lib/images
 fi
 
 # First install ?
