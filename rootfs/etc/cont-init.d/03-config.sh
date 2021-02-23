@@ -66,7 +66,7 @@ if [ ! -f /data/conf/local.protected.php ]; then
   sed -i "1s/.*/<?php define('DOKU_CONF', '\/data\/conf\/'); define('DOKU_LOCAL', '\/data\/conf\/');/" /var/www/install.php
 fi
 
-if [ ${firstInstall} -eq 0 ] && [ ! -f /var/www/install.php ]; then
+if [ ${firstInstall} -eq 0 ] && [ -f /var/www/install.php ]; then
   echo "Existing install with install.php detected, removing install.php..."
   rm /var/www/install.php
 fi
@@ -128,7 +128,6 @@ if [ ${firstInstall} -eq 0 ] && [ -f /data/lib/images ]; then
   rm -rf /var/www/lib/images/*
 ..ln -sf /data/lib/images /var/www/lib/images
 fi
-
 
 # First install ?
 if [ ${firstInstall} -eq 1 ]; then
