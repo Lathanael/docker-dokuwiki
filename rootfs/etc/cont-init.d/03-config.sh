@@ -78,7 +78,7 @@ fi
 
 if [ ! -d /data/lib/images ]; then
   echo "Creating initial images folder..."
-  runas_user cp -Rf /var/www/lib/images /data/lib/images/
+  runas_user cp -Rf /var/www/lib/images /data/lib/
 fi
 
 echo "Bootstrapping configuration..."
@@ -123,8 +123,9 @@ for userTpl in ${userTpls}; do
   ln -sf "/data/tpl/${userTpl}" "/var/www/lib/tpl/${userTpl}"
 done
 
-if [ ${firstInstall} -eq 0 ] && [ -f /data/lib/images ]; then
-  echo "Setting up extended access to dokuwiki files in the data folder..."
+if [ ${firstInstall} -eq 0 ] && [ -d /data/lib/images ]; then
+  echo "Setting up extended access to dokuwiki image files..."
+  runas_user cp -Ru /var/www/lib/images /data/lib/
   rm -rf /var/www/lib/images/*
 ..ln -sf /data/lib/images /var/www/lib/images
 fi
